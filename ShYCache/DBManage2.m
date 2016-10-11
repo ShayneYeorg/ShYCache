@@ -158,7 +158,7 @@ static FMDatabase *db = nil;
     NSString *saveTime = [NecessaryConfig converDate:[NSDate date]];
     NSString *value = nil;
     if (!response.jsonDic) {
-        value = response.value;
+        value = @"";
     } else {
         value = [NecessaryConfig jsonStringWithDictionary:response.jsonDic];
     }

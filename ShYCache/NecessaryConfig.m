@@ -54,11 +54,9 @@
 
 - (id)init {
     if (self=[super init]) {
-        self.code=@"";
-        self.desc=@"";
-        self.value=@"";
+        self.code = @"";
+        self.desc = @"";
         self.isFromDB = NO;
-        self.isAvailable = YES;
         self.isOutOfTime = NO;
     }
     return self;
@@ -83,6 +81,23 @@
 @end
 
 @implementation TestData
+
++ (void)getDataFromServer:(ResponseBlock)resultBlock {
+    //假数据
+    NSDictionary *res;
+    NSDate *createTime = [NSDate date];
+    res = @{
+            @"result": @"000",
+            @"desc": @"服务器返回的描述",
+            @"createTime": [NecessaryConfig converDate:createTime]
+            };
+    
+    //回调
+    GMResponse *response = [GMResponse responseWithJsonDic:res];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        resultBlock(response);
+    });
+}
 
 @end
 
