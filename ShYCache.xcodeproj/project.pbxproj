@@ -15,6 +15,7 @@
 		34C400D31DAC7E05009CE054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C400D21DAC7E05009CE054 /* Assets.xcassets */; };
 		34C400D61DAC7E05009CE054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C400D41DAC7E05009CE054 /* LaunchScreen.storyboard */; };
 		34C400DF1DAC7EA4009CE054 /* DBManage2.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C400DE1DAC7EA4009CE054 /* DBManage2.m */; };
+		34CCFCB61DAC8BF200C17861 /* NecessaryConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CCFCB51DAC8BF200C17861 /* NecessaryConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		34C400D71DAC7E05009CE054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C400DD1DAC7EA4009CE054 /* DBManage2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManage2.h; sourceTree = "<group>"; };
 		34C400DE1DAC7EA4009CE054 /* DBManage2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManage2.m; sourceTree = "<group>"; };
+		34CCFCB41DAC8BF200C17861 /* NecessaryConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NecessaryConfig.h; sourceTree = "<group>"; };
+		34CCFCB51DAC8BF200C17861 /* NecessaryConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NecessaryConfig.m; sourceTree = "<group>"; };
 		A456E316B5BD656C257026DF /* libPods-ShYCache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShYCache.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89AA77FD17A87384DBAE6EE /* Pods-ShYCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShYCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShYCache/Pods-ShYCache.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +75,8 @@
 				34C400CA1DAC7E05009CE054 /* AppDelegate.m */,
 				34C400CC1DAC7E05009CE054 /* ViewController.h */,
 				34C400CD1DAC7E05009CE054 /* ViewController.m */,
+				34CCFCB41DAC8BF200C17861 /* NecessaryConfig.h */,
+				34CCFCB51DAC8BF200C17861 /* NecessaryConfig.m */,
 				34C400DD1DAC7EA4009CE054 /* DBManage2.h */,
 				34C400DE1DAC7EA4009CE054 /* DBManage2.m */,
 				34C400CF1DAC7E05009CE054 /* Main.storyboard */,
@@ -234,6 +239,7 @@
 				34C400CB1DAC7E05009CE054 /* AppDelegate.m in Sources */,
 				34C400C81DAC7E05009CE054 /* main.m in Sources */,
 				34C400DF1DAC7EA4009CE054 /* DBManage2.m in Sources */,
+				34CCFCB61DAC8BF200C17861 /* NecessaryConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,8 +13,10 @@
 #import "FMDatabaseAdditions.h"
 #import "FMDatabaseQueue.h"
 #import "FMDatabasePool.h"
-#import "GMHttpService.h"
 #import <sqlite3.h>
+
+//一些使用这套缓存的前提条件，实际使用时要对应具体项目里的具体内容
+#import "NecessaryConfig.h"
 
 //初始时间
 UIKIT_EXTERN NSString *const CACHE_INITIAL_TIME;
@@ -40,20 +42,6 @@ typedef enum _CacheDataType{
 + (void)createAllTable;
 + (void)rebuildAllTable;
 + (void)cleanAllData;
-
-
-/* ---------------------------- 统一URL ---------------------------- */
-/**
- *  更新统一URL
- */
-+ (void)checkUnifiedURL;
-
-/**
- *  根据code获取统一URL
- *
- *  @param code           统一URL编码
- */
-+ (NSString *)getUnifiedURLByCode:(NSString *)code;
 
 
 /* ------------------------- lastCheckTime ------------------------ */
@@ -88,7 +76,7 @@ typedef enum _CacheDataType{
  *  (有些接口会有多个lastCheckTime，获取符合otherKeysArray条件的那个)
  *
  *  @param interfaceID        接口标识
- *  @param otherParamsArray   辅助参数数组，元素是NSString对象
+ *  @param otherKeysArray   辅助参数数组，元素是NSString对象
  */
 + (NSString *)getLastCheckTimeByInterfaceID:(NSString *)interfaceID otherKeys:(NSArray *)otherKeysArray;
 
@@ -97,7 +85,7 @@ typedef enum _CacheDataType{
  *  (当loadType不等于firstLoad的时候，返回0)
  *
  *  @param interfaceID        接口标识
- *  @param otherParamsArray   辅助参数数组，元素是NSString对象，不需辅助条件则传nil
+ *  @param otherKeysArray   辅助参数数组，元素是NSString对象，不需辅助条件则传nil
  *  @param loadType           加载类型
  */
 + (NSString *)getLastCheckTimeByInterfaceID:(NSString *)interfaceID otherKeys:(NSArray *)otherKeysArray loadType:(LoadType)loadType;

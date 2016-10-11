@@ -7,8 +7,6 @@
 //
 
 #import "DBManage2.h"
-#import "GMServiceHttpManager.h"
-#import "MessageBoxDBManage.h"
 
 //拼接Key的用途
 typedef enum _KeyPurpose {
@@ -41,7 +39,6 @@ static FMDatabase *db = nil;
 + (void)createAllTable {
     [DBManage2 createDBFile];
     [DBManage2 createStoreTable];
-    [MessageBoxDBManage createTable];
 }
 
 + (void)rebuildAllTable {
@@ -53,7 +50,6 @@ static FMDatabase *db = nil;
     }
     [db executeUpdate:[NSString stringWithFormat:@"DROP TABLE %@", CACHE_TABLE_NAME]];
     [DBManage2 createStoreTable];
-    [MessageBoxDBManage rebuildTable];
 }
 
 + (void)cleanAllData {
@@ -71,38 +67,6 @@ static FMDatabase *db = nil;
     } else {
         GMLog(@"清除所有缓存---失败");
     }
-}
-
-#pragma mark - 统一URL
-
-+ (void)checkUnifiedURL {
-    NSString *lastCheckTime = [DBManage2 getLastCheckTimeByInterfaceID:INTERFACE_CODE_UNIFIED_URL];
-    
-    [GMServiceHttpManager checkUnifiedURL:lastCheckTime tag:2016052788 resultBlock:^(GMResponse *gmResponse) {
-        if (gmResponse) {
-            if ([gmResponse.code isEqualToString:RESPONSE_CODE_SUCCEED]) {
-                GMLog(@"统一URL有变更");
-                NSMutableDictionary *checkData = gmResponse.jsonDic[@"URLInfo"];
-                [DBManage2 updateLastCheckTime:gmResponse.jsonDic[KEY_LAST_CHECK_TIME] interfaceID:INTERFACE_CODE_UNIFIED_URL];
-                [DBManage2 updateUnifiedURL:checkData];
-                
-            } else if ([gmResponse.code isEqualToString:RESPONSE_CODE_NO_CHANGE]) {
-                GMLog(@"统一URL无变更");
-            }
-            
-        } else {
-            GMLog(@"统一URL接口无数据");
-        }
-    }];
-}
-
-+ (NSString *)getUnifiedURLByCode:(NSString *)code {
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path =  [pathArray objectAtIndex:0];
-    NSString *filepath = [path stringByAppendingPathComponent:FILE_UNIFIED_URL];
-    
-    NSMutableDictionary *dicM = [NSMutableDictionary dictionaryWithContentsOfFile:filepath];
-    return [dicM objectForKey:code];
 }
 
 #pragma mark - lastCheckTime
@@ -191,12 +155,12 @@ static FMDatabase *db = nil;
     }
     [db setShouldCacheStatements:YES];
     
-    NSString *saveTime = [GMTool converDate:[NSDate date]];
+    NSString *saveTime = [NecessaryConfig converDate:[NSDate date]];
     NSString *value = nil;
     if (!response.jsonDic) {
         value = response.value;
     } else {
-        value = [response.jsonDic JSONRepresentation];
+        value = [NecessaryConfig jsonStringWithDictionary:response.jsonDic];
     }
     NSString *responseKey = @"";
     if (responseKeysArray.count) {
@@ -257,7 +221,7 @@ static FMDatabase *db = nil;
         response = [[GMResponse alloc] init];
         response.code = [result stringForColumn:CACHE_RESPONSE_CODE];
         response.desc = [result stringForColumn:CACHE_RESPONSE_DESC];
-        response.jsonDic = [[result stringForColumn:CACHE_RESPONSE_VALUE] JSONValue];
+        response.jsonDic = [NecessaryConfig dictionaryWithJsonString:[result stringForColumn:CACHE_RESPONSE_VALUE]];
         response.isFromDB = YES;
         response.isOutOfTime = NO;
         
@@ -346,7 +310,7 @@ static FMDatabase *db = nil;
 
 //判断基础服务缓存数据是否已过期（半小时）
 + (BOOL)isBasicServiceDataOutOfTime:(NSString *)sDate {
-    NSDate *saveDate = [GMTool converDate:sDate whithFormatter:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *saveDate = [NecessaryConfig converDate:sDate whithFormatter:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *expiredDate = [NSDate dateWithTimeInterval:30*60 sinceDate:saveDate];
     NSTimeInterval interval = [expiredDate timeIntervalSinceDate:[NSDate date]];
     
