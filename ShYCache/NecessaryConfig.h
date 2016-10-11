@@ -24,6 +24,9 @@
 #define LOCAL_TYPE_INTERFACE         @"local_type_interface"
 #define SERVER_TYPE_INTERFACE        @"server_type_interface"
 
+#define RESPONSE_CODE_SUCCEED        @"000" //业务成功
+#define RESPONSE_CODE_NO_CHANGE      @"101" //暂无数据变更
+
 typedef void (^ResponseBlock)(GMResponse *gmResponse);
 typedef enum _LoadType {
     Load_Type_FirstLoad = 0, //首次进入加载
@@ -45,16 +48,9 @@ typedef enum _LoadType {
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, assign) BOOL isFromDB; //是否从数据库取出
-@property (nonatomic, assign) BOOL isOutOfTime; //是否已过期（基础服务数据缓存使用）
+@property (nonatomic, assign) BOOL isOutOfTime; //是否已过期（local类型缓存使用）
 @property (nonatomic, strong) NSDictionary *jsonDic;
 
-/**
- *  获取一个响应对象
- *
- *  @param dic 经过Json解析的字典
- *
- *  @return 响应对象
- */
 + (GMResponse *)responseWithJsonDic:(NSDictionary *)dic;
 
 @end

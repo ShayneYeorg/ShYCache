@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7J1-B7-Q3S">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7J1-B7-Q3S">
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FsB-ss-m9c"/>
@@ -27,7 +27,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xHW-N6-GAp">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHW-N6-GAp">
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="o0Y-CU-Xa4"/>
@@ -60,6 +60,9 @@
                                     <constraint firstAttribute="height" constant="30" id="gKb-TP-7dG"/>
                                 </constraints>
                                 <state key="normal" title="进入功能页自动获取数据"/>
+                                <connections>
+                                    <action selector="firstLoadData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cJz-kz-Wtf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="du7-eJ-TZk">
                                 <constraints>
@@ -67,6 +70,9 @@
                                     <constraint firstAttribute="height" constant="30" id="qs1-yL-8ep"/>
                                 </constraints>
                                 <state key="normal" title="手动刷新获取数据"/>
+                                <connections>
+                                    <action selector="refreshLoadData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ukC-dt-7nW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（判断本地缓存是否过期，未过期则展示缓存，过期则重新请求接口获取数据。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-iW-L6U">
                                 <constraints>
@@ -140,6 +146,12 @@
                             <constraint firstItem="7J1-B7-Q3S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wZK-7J-cyq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstLoadBtn" destination="5L7-sB-FeA" id="QGp-TP-v71"/>
+                        <outlet property="localInterfaceDisplayField" destination="7J1-B7-Q3S" id="d6g-QT-0PM"/>
+                        <outlet property="refreshLoadBtn" destination="du7-eJ-TZk" id="XFk-Xn-pKT"/>
+                        <outlet property="serverInterfaceDisplayField" destination="xHW-N6-GAp" id="D0I-Ps-jai"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

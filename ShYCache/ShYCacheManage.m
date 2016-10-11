@@ -27,7 +27,7 @@ NSString *const CACHE_SUPPLE_TERMS      = @"suppleTerms"; //其他条件(比如�
 
 NSString *const DBFILE_NAME             = @"shycache.db";
 static NSString *const CACHE_TABLE_NAME = @"cacheTable";
-static int expireMin                    = 30; //CacheDataType_Local类型的数据过期的分钟数
+static int expireMin                    = 1; //CacheDataType_Local类型的数据过期的分钟数
 
 @implementation ShYCacheManage
 
@@ -35,12 +35,12 @@ static int expireMin                    = 30; //CacheDataType_Local类型的数�
 
 static FMDatabase *db = nil;
 
-+ (void)createAllTable {
++ (void)createAllTables {
     [ShYCacheManage createDBFile];
     [ShYCacheManage createStoreTable];
 }
 
-+ (void)rebuildAllTable {
++ (void)rebuildAllTables {
     if (!db) {
         [ShYCacheManage createDBFile];
     }
@@ -76,7 +76,7 @@ static FMDatabase *db = nil;
 
 + (void)updateLastCheckTime:(NSString *)lastCheckTime interfaceID:(NSString *)interfaceID otherKeys:(NSArray *)otherKeysArray {
     if (!lastCheckTime.length || !interfaceID.length) {
-        GMLog(@"更新%@接口的lastCheckTime失败", interfaceID);
+        GMLog(@"%@接口不需更新lastCheckTime", interfaceID);
         return;
     }
     

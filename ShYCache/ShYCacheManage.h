@@ -39,8 +39,8 @@ typedef enum _CacheDataType{
 @interface ShYCacheManage : NSObject
 
 /* --------------------------- 表相关方法 --------------------------- */
-+ (void)createAllTable;
-+ (void)rebuildAllTable;
++ (void)createAllTables;
++ (void)rebuildAllTables;
 + (void)cleanAllData;
 
 
