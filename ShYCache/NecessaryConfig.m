@@ -159,12 +159,67 @@
             
         } else if ([interfaceId isEqualToString:SERVER_TYPE_INTERFACE]) {
             //server类型接口
+            NSDate *createTime = [NSDate date];
+            NSDictionary *responseDic;
+            GMResponse *response;
             
+            //1、判断lastCheckTime是否为0
+            if ([lastCheckTime isEqualToString:CACHE_INITIAL_TIME]) {
+                //2、为0则直接返回当前数据给客户端
+                responseDic = @{
+                                @"result": @"000",
+                                @"desc": @"server类型的数据",
+                                @"createTime": [NecessaryConfig converDate:createTime],
+                                @"lastCheckTime": [NecessaryConfig converDate:createTime]
+                                };
+                response = [GMResponse responseWithJsonDic:responseDic];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    resultBlock(response);
+                });
+            
+            } else {
+                //3、不为0则判断lastCheckTime是否已过期
+                if([self isLastCheckTimeOutOfTime:lastCheckTime]) {
+                    //4、过期则返回新数据和新的lastCheckTime给客户端
+                    responseDic = @{
+                                    @"result": @"000",
+                                    @"desc": @"server类型的数据",
+                                    @"createTime": [NecessaryConfig converDate:createTime],
+                                    @"lastCheckTime": [NecessaryConfig converDate:createTime]
+                                    };
+                    response = [GMResponse responseWithJsonDic:responseDic];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        resultBlock(response);
+                    });
+                    
+                } else {
+                    //5、未过期则返回指令告知客户端继续使用本地缓存
+                    responseDic = @{
+                                    @"result": @"101",
+                                    @"desc": @"server类型的数据，数据无变更"
+                                    };
+                    response = [GMResponse responseWithJsonDic:responseDic];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        resultBlock(response);
+                    });
+                }
+            }
         }
         
     });
+}
+
++ (BOOL)isLastCheckTimeOutOfTime:(NSString *)lastCheckTime {
+    NSDate *saveDate = [NecessaryConfig converDate:lastCheckTime whithFormatter:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *expiredDate = [NSDate dateWithTimeInterval:2*60 sinceDate:saveDate]; //服务器说2分钟过期
+    NSTimeInterval interval = [expiredDate timeIntervalSinceDate:[NSDate date]];
     
-    
+    if (interval > 0) {
+        return NO; //未过期
+        
+    } else {
+        return YES; //已过期
+    }
 }
 
 @end

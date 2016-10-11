@@ -27,9 +27,25 @@
     [ShYCacheManage createAllTables];
 }
 
+#pragma mark - Button Action
+
+- (IBAction)firstLoadData:(id)sender {
+    GMLog(@"first load");
+    [self enableAllBtns];
+    [self asyncCheckData:LOCAL_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
+    [self asyncCheckData:SERVER_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
+}
+
+- (IBAction)refreshLoadData:(id)sender {
+    GMLog(@"refresh load");
+    [self enableAllBtns];
+    [self asyncCheckData:LOCAL_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
+    [self asyncCheckData:SERVER_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
+}
+
 #pragma mark - Interface
 
-- (void)checkData:(NSString *)interfaceId loadType:(LoadType)loadType {
+- (void)asyncCheckData:(NSString *)interfaceId loadType:(LoadType)loadType {
     __weak typeof(self) weakSelf = self;
     [TestData checkDataWithInterfaceId:interfaceId loadType:loadType callback:^(GMResponse *gmResponse) {
         if (gmResponse) {
@@ -73,22 +89,6 @@
     }
     
     [self ableAllBtns];
-}
-
-#pragma mark - Button Action
-
-- (IBAction)firstLoadData:(id)sender {
-    GMLog(@"first load");
-    [self enableAllBtns];
-    [self checkData:LOCAL_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
-//    [self checkData:SERVER_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
-}
-
-- (IBAction)refreshLoadData:(id)sender {
-    GMLog(@"refresh load");
-    [self enableAllBtns];
-    [self checkData:LOCAL_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
-//    [self checkData:SERVER_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
 }
 
 #pragma mark - Private
