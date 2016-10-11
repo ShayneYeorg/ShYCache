@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21D9F974960C913A1776EA19 /* libPods-ShYCache.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A456E316B5BD656C257026DF /* libPods-ShYCache.a */; };
 		34C400C81DAC7E05009CE054 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C400C71DAC7E05009CE054 /* main.m */; };
 		34C400CB1DAC7E05009CE054 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C400CA1DAC7E05009CE054 /* AppDelegate.m */; };
 		34C400CE1DAC7E05009CE054 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C400CD1DAC7E05009CE054 /* ViewController.m */; };
 		34C400D11DAC7E05009CE054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C400CF1DAC7E05009CE054 /* Main.storyboard */; };
 		34C400D31DAC7E05009CE054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C400D21DAC7E05009CE054 /* Assets.xcassets */; };
 		34C400D61DAC7E05009CE054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C400D41DAC7E05009CE054 /* LaunchScreen.storyboard */; };
+		34C400DF1DAC7EA4009CE054 /* DBManage2.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C400DE1DAC7EA4009CE054 /* DBManage2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0872FAB0EA8694F04C18CB9E /* Pods-ShYCache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShYCache.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShYCache/Pods-ShYCache.release.xcconfig"; sourceTree = "<group>"; };
 		34C400C31DAC7E05009CE054 /* ShYCache.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShYCache.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C400C71DAC7E05009CE054 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		34C400C91DAC7E05009CE054 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +29,10 @@
 		34C400D21DAC7E05009CE054 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34C400D51DAC7E05009CE054 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34C400D71DAC7E05009CE054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34C400DD1DAC7EA4009CE054 /* DBManage2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManage2.h; sourceTree = "<group>"; };
+		34C400DE1DAC7EA4009CE054 /* DBManage2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManage2.m; sourceTree = "<group>"; };
+		A456E316B5BD656C257026DF /* libPods-ShYCache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShYCache.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A89AA77FD17A87384DBAE6EE /* Pods-ShYCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShYCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShYCache/Pods-ShYCache.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21D9F974960C913A1776EA19 /* libPods-ShYCache.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +52,8 @@
 			children = (
 				34C400C51DAC7E05009CE054 /* ShYCache */,
 				34C400C41DAC7E05009CE054 /* Products */,
+				5227A37600B985EDFE5AB116 /* Pods */,
+				FE5F638B17912C1676CAA5AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +72,8 @@
 				34C400CA1DAC7E05009CE054 /* AppDelegate.m */,
 				34C400CC1DAC7E05009CE054 /* ViewController.h */,
 				34C400CD1DAC7E05009CE054 /* ViewController.m */,
+				34C400DD1DAC7EA4009CE054 /* DBManage2.h */,
+				34C400DE1DAC7EA4009CE054 /* DBManage2.m */,
 				34C400CF1DAC7E05009CE054 /* Main.storyboard */,
 				34C400D21DAC7E05009CE054 /* Assets.xcassets */,
 				34C400D41DAC7E05009CE054 /* LaunchScreen.storyboard */,
@@ -79,6 +91,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5227A37600B985EDFE5AB116 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A89AA77FD17A87384DBAE6EE /* Pods-ShYCache.debug.xcconfig */,
+				0872FAB0EA8694F04C18CB9E /* Pods-ShYCache.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FE5F638B17912C1676CAA5AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A456E316B5BD656C257026DF /* libPods-ShYCache.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +115,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34C400DA1DAC7E05009CE054 /* Build configuration list for PBXNativeTarget "ShYCache" */;
 			buildPhases = (
+				B2EADD9CC5E2CBDAF5694FF2 /* [CP] Check Pods Manifest.lock */,
 				34C400BF1DAC7E05009CE054 /* Sources */,
 				34C400C01DAC7E05009CE054 /* Frameworks */,
 				34C400C11DAC7E05009CE054 /* Resources */,
+				2FE1FC458BAD0589262C0498 /* [CP] Embed Pods Frameworks */,
+				FA1E06280D63DE7D37CDC1B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,6 +177,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2FE1FC458BAD0589262C0498 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShYCache/Pods-ShYCache-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2EADD9CC5E2CBDAF5694FF2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA1E06280D63DE7D37CDC1B2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShYCache/Pods-ShYCache-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		34C400BF1DAC7E05009CE054 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -153,6 +233,7 @@
 				34C400CE1DAC7E05009CE054 /* ViewController.m in Sources */,
 				34C400CB1DAC7E05009CE054 /* AppDelegate.m in Sources */,
 				34C400C81DAC7E05009CE054 /* main.m in Sources */,
+				34C400DF1DAC7EA4009CE054 /* DBManage2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +349,7 @@
 		};
 		34C400DB1DAC7E05009CE054 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A89AA77FD17A87384DBAE6EE /* Pods-ShYCache.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShYCache/Info.plist;
@@ -279,6 +361,7 @@
 		};
 		34C400DC1DAC7E05009CE054 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0872FAB0EA8694F04C18CB9E /* Pods-ShYCache.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShYCache/Info.plist;
@@ -307,6 +390,7 @@
 				34C400DC1DAC7E05009CE054 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
