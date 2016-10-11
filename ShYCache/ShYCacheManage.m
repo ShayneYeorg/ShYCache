@@ -1,12 +1,12 @@
 //
-//  DBManage2.m
+//  ShYCacheManage.m
 //  Gmcchh
 //
 //  Created by 杨淳引 on 16/5/16.
 //  Copyright © 2016年 KingPoint. All rights reserved.
 //
 
-#import "DBManage2.h"
+#import "ShYCacheManage.h"
 
 //拼接Key的用途
 typedef enum _KeyPurpose {
@@ -25,36 +25,35 @@ NSString *const CACHE_SAVE_TIME         = @"saveTime";    //保存时间
 NSString *const CACHE_INTERFACE_ID      = @"interfaceId"; //接口标识
 NSString *const CACHE_SUPPLE_TERMS      = @"suppleTerms"; //其他条件(比如手机号、地市、分页的下标、条数等参数的拼接，可为空)
 
-NSString *const DBFILE_NAME             = @"gmcchh.db";
+NSString *const DBFILE_NAME             = @"shycache.db";
+static NSString *const CACHE_TABLE_NAME = @"cacheTable";
+static int expireMin                    = 30; //CacheDataType_Local类型的数据过期的分钟数
 
-static NSString *const CACHE_TABLE_NAME = @"reformCacheTable";
-static NSString *const FILE_UNIFIED_URL = @"UnifiedURL.plist"; //存放统一URL
-
-@implementation DBManage2
+@implementation ShYCacheManage
 
 #pragma mark - 表相关方法
 
 static FMDatabase *db = nil;
 
 + (void)createAllTable {
-    [DBManage2 createDBFile];
-    [DBManage2 createStoreTable];
+    [ShYCacheManage createDBFile];
+    [ShYCacheManage createStoreTable];
 }
 
 + (void)rebuildAllTable {
     if (!db) {
-        [DBManage2 createDBFile];
+        [ShYCacheManage createDBFile];
     }
     if (![db open]) {
         return;
     }
     [db executeUpdate:[NSString stringWithFormat:@"DROP TABLE %@", CACHE_TABLE_NAME]];
-    [DBManage2 createStoreTable];
+    [ShYCacheManage createStoreTable];
 }
 
 + (void)cleanAllData {
     if (!db) {
-        [DBManage2 createDBFile];
+        [ShYCacheManage createDBFile];
     }
     if (![db open]) {
         return;
@@ -72,7 +71,7 @@ static FMDatabase *db = nil;
 #pragma mark - lastCheckTime
 
 + (void)updateLastCheckTime:(NSString *)lastCheckTime interfaceID:(NSString *)interfaceID {
-    [DBManage2 updateLastCheckTime:lastCheckTime interfaceID:interfaceID otherKeys:nil];
+    [ShYCacheManage updateLastCheckTime:lastCheckTime interfaceID:interfaceID otherKeys:nil];
 }
 
 + (void)updateLastCheckTime:(NSString *)lastCheckTime interfaceID:(NSString *)interfaceID otherKeys:(NSArray *)otherKeysArray {
@@ -86,7 +85,7 @@ static FMDatabase *db = nil;
         NSMutableArray *keysArrayM = [[NSMutableArray alloc]init];
         [keysArrayM addObject:interfaceID];
         [keysArrayM addObjectsFromArray:otherKeysArray];
-        key = [DBManage2 fabricateKey:keysArrayM purpose:KeyPurpose_Normal];
+        key = [ShYCacheManage fabricateKey:keysArrayM purpose:KeyPurpose_Normal];
         
     } else {
         key = interfaceID;
@@ -99,11 +98,11 @@ static FMDatabase *db = nil;
 }
 
 + (NSString *)getLastCheckTimeByInterfaceID:(NSString *)interfaceID {
-    return [DBManage2 getLastCheckTimeByInterfaceID:interfaceID otherKeys:nil];
+    return [ShYCacheManage getLastCheckTimeByInterfaceID:interfaceID otherKeys:nil];
 }
 
 + (NSString *)getLastCheckTimeByInterfaceID:(NSString *)interfaceID otherKeys:(NSArray *)otherKeysArray {
-    return [DBManage2 getLastCheckTimeByInterfaceID:interfaceID otherKeys:otherKeysArray loadType:0];
+    return [ShYCacheManage getLastCheckTimeByInterfaceID:interfaceID otherKeys:otherKeysArray loadType:0];
 }
 
 + (NSString *)getLastCheckTimeByInterfaceID:(NSString *)interfaceID otherKeys:(NSArray *)otherKeysArray loadType:(LoadType)loadType {
@@ -116,7 +115,7 @@ static FMDatabase *db = nil;
         NSMutableArray *keysArrayM = [[NSMutableArray alloc]init];
         [keysArrayM addObject:interfaceID];
         [keysArrayM addObjectsFromArray:otherKeysArray];
-        key = [DBManage2 fabricateKey:keysArrayM purpose:KeyPurpose_Normal];
+        key = [ShYCacheManage fabricateKey:keysArrayM purpose:KeyPurpose_Normal];
         
     } else {
         key = interfaceID;
@@ -132,15 +131,15 @@ static FMDatabase *db = nil;
 #pragma mark - 新增、更新缓存
 
 + (void)forceUpdateResponse:(GMResponse *)response interfaceId:(NSString *)interfaceId {
-    [DBManage2 forceUpdateResponse:response interfaceId:interfaceId otherResponseKeys:nil];
+    [ShYCacheManage forceUpdateResponse:response interfaceId:interfaceId otherResponseKeys:nil];
 }
 
 + (void)forceUpdateResponse:(GMResponse *)response interfaceId:(NSString *)interfaceId otherResponseKeys:(NSArray *)responseKeysArray {
-    [DBManage2 forceUpdateResponse:response interfaceId:interfaceId otherResponseKeys:responseKeysArray otherLastCheckTimeKeys:nil];
+    [ShYCacheManage forceUpdateResponse:response interfaceId:interfaceId otherResponseKeys:responseKeysArray otherLastCheckTimeKeys:nil];
 }
 
 + (void)forceUpdateResponse:(GMResponse *)response interfaceId:(NSString *)interfaceId otherResponseKeys:(NSArray *)responseKeysArray otherLastCheckTimeKeys:(NSArray *)lastCheckTimeKeysArray {
-    [DBManage2 forceUpdateResponse:response interfaceId:interfaceId otherResponseKeys:responseKeysArray otherLastCheckTimeKeys:lastCheckTimeKeysArray shouldSaveLastCheckTime:YES];
+    [ShYCacheManage forceUpdateResponse:response interfaceId:interfaceId otherResponseKeys:responseKeysArray otherLastCheckTimeKeys:lastCheckTimeKeysArray shouldSaveLastCheckTime:YES];
 }
 
 + (void)forceUpdateResponse:(GMResponse *)response interfaceId:(NSString *)interfaceId otherResponseKeys:(NSArray *)responseKeysArray otherLastCheckTimeKeys:(NSArray *)lastCheckTimeKeysArray shouldSaveLastCheckTime:(BOOL)shouldSaveLastCheckTime {
@@ -148,7 +147,7 @@ static FMDatabase *db = nil;
         return;
     }
     if (!db) {
-        [DBManage2 createDBFile];
+        [ShYCacheManage createDBFile];
     }
     if (![db open]) {
         return;
@@ -165,7 +164,7 @@ static FMDatabase *db = nil;
     NSString *responseKey = @"";
     if (responseKeysArray.count) {
         NSMutableArray *responseKeysArrayM = [NSMutableArray arrayWithArray:responseKeysArray];
-        responseKey = [DBManage2 fabricateKey:responseKeysArrayM purpose:KeyPurpose_Normal];
+        responseKey = [ShYCacheManage fabricateKey:responseKeysArrayM purpose:KeyPurpose_Normal];
     }
     
     FMResultSet *result = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = ? AND %@ = ?", CACHE_TABLE_NAME, CACHE_INTERFACE_ID, CACHE_SUPPLE_TERMS], interfaceId, responseKey];
@@ -174,7 +173,7 @@ static FMDatabase *db = nil;
         if (state) {
             GMLog(@"更新%@接口部分缓存---成功", interfaceId);
             if (response.jsonDic[KEY_LAST_CHECK_TIME] && shouldSaveLastCheckTime) {
-                [DBManage2 updateLastCheckTime:response.jsonDic[KEY_LAST_CHECK_TIME] interfaceID:interfaceId otherKeys:lastCheckTimeKeysArray];
+                [ShYCacheManage updateLastCheckTime:response.jsonDic[KEY_LAST_CHECK_TIME] interfaceID:interfaceId otherKeys:lastCheckTimeKeysArray];
             }
             
         } else {
@@ -186,7 +185,7 @@ static FMDatabase *db = nil;
         if (state) {
             GMLog(@"新增%@接口缓存---成功", interfaceId);
             if (response.jsonDic[KEY_LAST_CHECK_TIME] && shouldSaveLastCheckTime) {
-                [DBManage2 updateLastCheckTime:response.jsonDic[KEY_LAST_CHECK_TIME] interfaceID:interfaceId otherKeys:lastCheckTimeKeysArray];
+                [ShYCacheManage updateLastCheckTime:response.jsonDic[KEY_LAST_CHECK_TIME] interfaceID:interfaceId otherKeys:lastCheckTimeKeysArray];
             }
             
         } else {
@@ -201,7 +200,7 @@ static FMDatabase *db = nil;
 #pragma mark - 获取缓存
 
 + (GMResponse *)getResponseWithInterfaceId:(NSString *)interfaceId cacheDataType:(CacheDataType)cacheDataType {
-    return [DBManage2 getResponseWithInterfaceId:interfaceId otherKeys:nil cacheDataType:cacheDataType];
+    return [ShYCacheManage getResponseWithInterfaceId:interfaceId otherKeys:nil cacheDataType:cacheDataType];
 }
 
 + (GMResponse *)getResponseWithInterfaceId:(NSString *)interfaceId otherKeys:(NSArray *)otherKeysArray cacheDataType:(CacheDataType)cacheDataType {
@@ -213,7 +212,7 @@ static FMDatabase *db = nil;
     NSString *key = @"";
     if (otherKeysArray.count) {
         NSMutableArray *otherKeysArrayM = [NSMutableArray arrayWithArray:otherKeysArray];
-        key = [DBManage2 fabricateKey:otherKeysArrayM purpose:KeyPurpose_Normal];
+        key = [ShYCacheManage fabricateKey:otherKeysArrayM purpose:KeyPurpose_Normal];
     }
     
     FMResultSet *result = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = ? AND %@ = ?", CACHE_TABLE_NAME, CACHE_INTERFACE_ID, CACHE_SUPPLE_TERMS], interfaceId, key];
@@ -226,7 +225,7 @@ static FMDatabase *db = nil;
         response.isOutOfTime = NO;
         
         //基础服务数据需要判断缓存是否已过期失效(半小时)
-        if (cacheDataType == CacheDataType_Basic_Service && [DBManage2 isBasicServiceDataOutOfTime:[result stringForColumn:CACHE_SAVE_TIME]]) {
+        if (cacheDataType == CacheDataType_Local && [ShYCacheManage isLocalTypeDataOutOfTime:[result stringForColumn:CACHE_SAVE_TIME]]) {
             //过期
             response.isOutOfTime = YES;
             GMLog(@"%@接口的数据已过期", interfaceId);
@@ -243,12 +242,12 @@ static FMDatabase *db = nil;
 #pragma mark - 删除缓存
 
 + (void)deleteResponseWithInterfaceId:(NSString *)interfaceId {
-    [DBManage2 deleteResponseWithInterfaceId:interfaceId otherKeys:nil];
+    [ShYCacheManage deleteResponseWithInterfaceId:interfaceId otherKeys:nil];
 }
 
 + (void)deleteResponseWithInterfaceId:(NSString *)interfaceId otherKeys:(NSArray *)otherKeysArray {
     if (!db) {
-        [DBManage2 createDBFile];
+        [ShYCacheManage createDBFile];
     }
     if (![db open]) {
         return;
@@ -258,7 +257,7 @@ static FMDatabase *db = nil;
     NSString *key = @"%%";
     if (otherKeysArray.count) {
         NSMutableArray *otherKeysArrayM = [NSMutableArray arrayWithArray:otherKeysArray];
-        key = [DBManage2 fabricateKey:otherKeysArrayM purpose:KeyPurpose_FuzzyQuery];
+        key = [ShYCacheManage fabricateKey:otherKeysArrayM purpose:KeyPurpose_FuzzyQuery];
     }
     
     BOOL state = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ? AND %@ LIKE ?", CACHE_TABLE_NAME, CACHE_INTERFACE_ID, CACHE_SUPPLE_TERMS], interfaceId, key];
@@ -274,7 +273,7 @@ static FMDatabase *db = nil;
 #pragma mark - Private
 
 + (void)createDBFile {
-    db = [FMDatabase databaseWithPath:[DBManage2 dbPath]];
+    db = [FMDatabase databaseWithPath:[ShYCacheManage dbPath]];
 }
 
 + (NSString *)dbPath {
@@ -286,7 +285,7 @@ static FMDatabase *db = nil;
 
 + (void)createStoreTable {
     if (!db) {
-        [DBManage2 createDBFile];
+        [ShYCacheManage createDBFile];
     }
     if (![db open]) {
         return;
@@ -300,25 +299,17 @@ static FMDatabase *db = nil;
     [db close];
 }
 
-+ (void)updateUnifiedURL:(NSMutableDictionary *)dicM {
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path =  [pathArray objectAtIndex:0];
-    NSString *filePath = [path stringByAppendingPathComponent:FILE_UNIFIED_URL];
-    
-    [dicM writeToFile:filePath atomically:YES];
-}
-
 //判断基础服务缓存数据是否已过期（半小时）
-+ (BOOL)isBasicServiceDataOutOfTime:(NSString *)sDate {
++ (BOOL)isLocalTypeDataOutOfTime:(NSString *)sDate {
     NSDate *saveDate = [NecessaryConfig converDate:sDate whithFormatter:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *expiredDate = [NSDate dateWithTimeInterval:30*60 sinceDate:saveDate];
+    NSDate *expiredDate = [NSDate dateWithTimeInterval:expireMin*60 sinceDate:saveDate];
     NSTimeInterval interval = [expiredDate timeIntervalSinceDate:[NSDate date]];
     
     if (interval > 0) {
-        return NO;//未过期
+        return NO; //未过期
         
     } else {
-        return YES;//已过期
+        return YES; //已过期
     }
 }
 

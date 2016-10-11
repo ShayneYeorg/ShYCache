@@ -21,11 +21,14 @@
 #define KEY_CREATE_TIME              @"createTime"
 #define KEY_LAST_CHECK_TIME          @"lastCheckTime"
 
-typedef void (^ResponseBlock)(GMResponse *);
+#define LOCAL_TYPE_INTERFACE         @"local_type_interface"
+#define SERVER_TYPE_INTERFACE        @"server_type_interface"
+
+typedef void (^ResponseBlock)(GMResponse *gmResponse);
 typedef enum _LoadType {
-    Load_Type_FirstLoad = 0,//首次加载
-    Load_Type_PullRefresh,//下拉刷新
-    Load_Type_LoadMore//加载更多
+    Load_Type_FirstLoad = 0, //首次进入加载
+    Load_Type_PullRefresh,   //下拉刷新数据
+    Load_Type_LoadMore       //上拉加载更多
 } LoadType;
 
 @interface NecessaryConfig : NSObject
@@ -58,7 +61,7 @@ typedef enum _LoadType {
 
 @interface TestData : NSObject
 
-+ (void)getDataFromServer:(ResponseBlock)resultBlock;
++ (void)checkDataWithInterfaceId:(NSString *)interfaceId loadType:(LoadType)loadTpye callback:(ResponseBlock)resultBlock;
 
 @end
 

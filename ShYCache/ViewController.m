@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ShYCacheManage.h"
 
 @interface ViewController ()
 
@@ -20,7 +21,13 @@
     
 }
 
-- (void)getDataFromServer {
+- (void)checkData:(NSString *)interfaceId loadType:(LoadType)loadType {
+    [TestData checkDataWithInterfaceId:interfaceId loadType:loadType callback:^(GMResponse *gmResponse) {
+        
+    }];
+}
+
+- (void)parseData:(GMResponse *)gmResponse {
     
 }
 

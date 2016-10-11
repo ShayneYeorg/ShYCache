@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +17,133 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7J1-B7-Q3S">
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="FsB-ss-m9c"/>
+                                    <constraint firstAttribute="width" constant="200" id="NBD-Yg-LJl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xHW-N6-GAp">
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="o0Y-CU-Xa4"/>
+                                    <constraint firstAttribute="height" constant="60" id="pbg-3V-vFw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local类型接口：数据过期时间由本地决定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDT-R8-Oka">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="Ccz-AZ-GrN"/>
+                                    <constraint firstAttribute="height" constant="21" id="vuD-PR-iZu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Server类型接口：数据过期时间由服务器决定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vP1-M7-ZFK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5cb-vJ-O0W"/>
+                                    <constraint firstAttribute="width" constant="290" id="6qV-r6-AiM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5L7-sB-FeA">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MvA-Xx-hM6"/>
+                                    <constraint firstAttribute="height" constant="30" id="gKb-TP-7dG"/>
+                                </constraints>
+                                <state key="normal" title="进入功能页自动获取数据"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="du7-eJ-TZk">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="cYc-V4-ZjI"/>
+                                    <constraint firstAttribute="height" constant="30" id="qs1-yL-8ep"/>
+                                </constraints>
+                                <state key="normal" title="手动刷新获取数据"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（判断本地缓存是否过期，未过期则展示缓存，过期则重新请求接口获取数据。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-iW-L6U">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Fiu-LY-sbs"/>
+                                    <constraint firstAttribute="height" constant="30" id="d4b-4w-bg8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（先展示本地缓存，同时异步请求接口，将本地缓存的生成时间传给服务器，服务器判断缓存是否过期后，返回指令和数据，客户端收到响应后根据指令处理页面展示。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="039-fp-XzU">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="lUO-nk-jcx"/>
+                                    <constraint firstAttribute="width" constant="300" id="rhf-6v-XZf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="------------------------------------------------------" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1c-bp-L4X">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="0MC-Lx-MbQ"/>
+                                    <constraint firstAttribute="width" constant="300" id="rhp-uK-e15"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="------------------------------------------------------" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNa-bG-lBT">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="ed7-Rg-sVd"/>
+                                    <constraint firstAttribute="height" constant="10" id="mKh-1c-EXD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在本demo中，Local类型数据过期时间为1分钟，Server类型数据过期时间为2分钟。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBG-78-Ojo">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2wL-NU-eIf"/>
+                                    <constraint firstAttribute="height" constant="50" id="Lj5-ta-ty4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="039-fp-XzU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2Bv-Cl-JLv"/>
+                            <constraint firstItem="BBG-78-Ojo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2Dp-tC-qR3"/>
+                            <constraint firstItem="BBG-78-Ojo" firstAttribute="top" secondItem="du7-eJ-TZk" secondAttribute="bottom" constant="8" id="3QD-vb-eRF"/>
+                            <constraint firstItem="xNa-bG-lBT" firstAttribute="top" secondItem="G7T-iW-L6U" secondAttribute="bottom" constant="8" id="5Kv-vQ-Q8A"/>
+                            <constraint firstItem="G1c-bp-L4X" firstAttribute="top" secondItem="039-fp-XzU" secondAttribute="bottom" constant="8" id="638-G3-p5w"/>
+                            <constraint firstItem="du7-eJ-TZk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6qJ-GS-0EY"/>
+                            <constraint firstItem="BDT-R8-Oka" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="A9F-0u-sig"/>
+                            <constraint firstItem="xHW-N6-GAp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C4v-va-VqM"/>
+                            <constraint firstItem="7J1-B7-Q3S" firstAttribute="top" secondItem="BDT-R8-Oka" secondAttribute="bottom" constant="8" id="FS9-xe-BEZ"/>
+                            <constraint firstItem="5L7-sB-FeA" firstAttribute="top" secondItem="xNa-bG-lBT" secondAttribute="bottom" constant="8" id="NvC-mh-FDM"/>
+                            <constraint firstItem="039-fp-XzU" firstAttribute="top" secondItem="7J1-B7-Q3S" secondAttribute="bottom" constant="8" id="OhA-RT-qTX"/>
+                            <constraint firstItem="du7-eJ-TZk" firstAttribute="top" secondItem="5L7-sB-FeA" secondAttribute="bottom" constant="8" id="OlX-Iu-pKl"/>
+                            <constraint firstItem="vP1-M7-ZFK" firstAttribute="top" secondItem="G1c-bp-L4X" secondAttribute="bottom" constant="8" id="SQq-EG-ctk"/>
+                            <constraint firstItem="G7T-iW-L6U" firstAttribute="top" secondItem="xHW-N6-GAp" secondAttribute="bottom" constant="8" id="V5x-EK-zDH"/>
+                            <constraint firstItem="G1c-bp-L4X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VcR-Eo-x7B"/>
+                            <constraint firstItem="xNa-bG-lBT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="b4Q-xp-bCA"/>
+                            <constraint firstItem="G7T-iW-L6U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bSx-wZ-k4R"/>
+                            <constraint firstItem="xHW-N6-GAp" firstAttribute="top" secondItem="vP1-M7-ZFK" secondAttribute="bottom" constant="8" id="kQW-em-mop"/>
+                            <constraint firstItem="vP1-M7-ZFK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lDs-Z6-RYj"/>
+                            <constraint firstItem="5L7-sB-FeA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qS6-0S-gfN"/>
+                            <constraint firstItem="BDT-R8-Oka" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t5V-fj-KPK"/>
+                            <constraint firstItem="7J1-B7-Q3S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wZK-7J-cyq"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="121.88905547226388"/>
         </scene>
     </scenes>
 </document>

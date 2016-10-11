@@ -82,7 +82,9 @@
 
 @implementation TestData
 
-+ (void)getDataFromServer:(ResponseBlock)resultBlock {
++ (void)checkDataWithInterfaceId:(NSString *)interfaceId loadType:(LoadType)loadTpye callback:(ResponseBlock)resultBlock {
+    //假装从服务器取数据
+    
     //假数据
     NSDictionary *res;
     NSDate *createTime = [NSDate date];

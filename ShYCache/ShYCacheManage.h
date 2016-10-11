@@ -1,5 +1,5 @@
 //
-//  DBManage2.h
+//  ShYCacheManage.h
 //  Gmcchh
 //
 //  Created by 杨淳引 on 16/5/16.
@@ -32,11 +32,11 @@ UIKIT_EXTERN NSString *const CACHE_SUPPLE_TERMS;   //其他条件(比如手机�
 UIKIT_EXTERN NSString *const DBFILE_NAME;
 
 typedef enum _CacheDataType{
-    CacheDataType_Basic_Service = 0, //基础服务数据缓存(半小时失效)
-    CacheDataType_Server_Local       //服务器本地数据缓存(失效时间由后台决定)
+    CacheDataType_Local = 0,   //基础服务数据缓存(expireMin分钟后失效，expireMin见ShYCacheManage.m文件)
+    CacheDataType_Server       //服务器本地数据缓存(失效时间由后台决定)
 } CacheDataType;
 
-@interface DBManage2 : NSObject
+@interface ShYCacheManage : NSObject
 
 /* --------------------------- 表相关方法 --------------------------- */
 + (void)createAllTable;
