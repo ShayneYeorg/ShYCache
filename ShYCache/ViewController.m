@@ -81,19 +81,21 @@
     GMLog(@"first load");
     [self enableAllBtns];
     [self checkData:LOCAL_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
-    [self checkData:SERVER_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
+//    [self checkData:SERVER_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
 }
 
 - (IBAction)refreshLoadData:(id)sender {
     GMLog(@"refresh load");
     [self enableAllBtns];
     [self checkData:LOCAL_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
-    [self checkData:SERVER_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
+//    [self checkData:SERVER_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
 }
 
 #pragma mark - Private
 
 - (void)enableAllBtns {
+    self.localInterfaceDisplayField.text = @"";
+    self.serverInterfaceDisplayField.text = @"";
     self.firstLoadBtn.userInteractionEnabled = NO;
     self.refreshLoadBtn.userInteractionEnabled = NO;
 }

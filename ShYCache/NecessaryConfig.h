@@ -61,4 +61,11 @@ typedef enum _LoadType {
 
 @end
 
+//假装这是服务器
+@interface FakeServer : NSObject
+
++ (void)checkDataWithInterfaceId:(NSString *)interfaceId lastCheckTime:(NSString *)lastCheckTime callback:(ResponseBlock)resultBlock;
+
+@end
+
 

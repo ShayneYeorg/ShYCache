@@ -22,18 +22,18 @@
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FsB-ss-m9c"/>
-                                    <constraint firstAttribute="width" constant="200" id="NBD-Yg-LJl"/>
+                                    <constraint firstAttribute="width" constant="250" id="NBD-Yg-LJl"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHW-N6-GAp">
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="o0Y-CU-Xa4"/>
+                                    <constraint firstAttribute="width" constant="250" id="o0Y-CU-Xa4"/>
                                     <constraint firstAttribute="height" constant="60" id="pbg-3V-vFw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local类型接口：数据过期时间由本地决定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDT-R8-Oka">
@@ -74,18 +74,18 @@
                                     <action selector="refreshLoadData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ukC-dt-7nW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（判断本地缓存是否过期，未过期则展示缓存，过期则重新请求接口获取数据。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-iW-L6U">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="先展示本地缓存，同时异步请求接口，将本地缓存的生成时间传给服务器，服务器判断缓存是否过期后，返回指令和数据，客户端收到响应后根据指令处理页面展示。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-iW-L6U">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Fiu-LY-sbs"/>
-                                    <constraint firstAttribute="height" constant="30" id="d4b-4w-bg8"/>
+                                    <constraint firstAttribute="height" constant="50" id="d4b-4w-bg8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（先展示本地缓存，同时异步请求接口，将本地缓存的生成时间传给服务器，服务器判断缓存是否过期后，返回指令和数据，客户端收到响应后根据指令处理页面展示。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="039-fp-XzU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（判断本地缓存是否过期，未过期则展示缓存，过期则重新请求接口获取数据。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="039-fp-XzU">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="lUO-nk-jcx"/>
+                                    <constraint firstAttribute="height" constant="30" id="lUO-nk-jcx"/>
                                     <constraint firstAttribute="width" constant="300" id="rhf-6v-XZf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
