@@ -30,14 +30,14 @@
 #pragma mark - Button Action
 
 - (IBAction)firstLoadData:(id)sender {
-    GMLog(@"first load");
+    ShYLog(@"first load");
     [self enableAllBtns];
     [self asyncCheckData:LOCAL_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
     [self asyncCheckData:SERVER_TYPE_INTERFACE loadType:Load_Type_FirstLoad];
 }
 
 - (IBAction)refreshLoadData:(id)sender {
-    GMLog(@"refresh load");
+    ShYLog(@"refresh load");
     [self enableAllBtns];
     [self asyncCheckData:LOCAL_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
     [self asyncCheckData:SERVER_TYPE_INTERFACE loadType:Load_Type_PullRefresh];
@@ -55,14 +55,14 @@
                 
             } else if ([gmResponse.code isEqualToString:RESPONSE_CODE_NO_CHANGE]) {
                 //接口告知数据无更新(只有Server类型接口会有此类型返回数据)
-                GMLog(@"%@接口数据无更新，本地继续展示缓存数据", interfaceId);
+                ShYLog(@"%@接口数据无更新，本地继续展示缓存数据", interfaceId);
                 
             } else {
-                GMLog(@"接口数据出错");
+                ShYLog(@"接口数据出错");
             }
             
         } else {
-            GMLog(@"接口数据出错");
+            ShYLog(@"接口数据出错");
         }
     }];
 }
@@ -85,7 +85,7 @@
         self.serverInterfaceDisplayField.text = displayStr;
         
     } else {
-        GMLog(@"接口数据出错");
+        ShYLog(@"接口数据出错");
     }
     
     [self ableAllBtns];
@@ -94,8 +94,8 @@
 #pragma mark - Private
 
 - (void)enableAllBtns {
-    self.localInterfaceDisplayField.text = @"";
-    self.serverInterfaceDisplayField.text = @"";
+    self.localInterfaceDisplayField.text = @"接口请求中...";
+    self.serverInterfaceDisplayField.text = @"接口请求中...";
     self.firstLoadBtn.userInteractionEnabled = NO;
     self.refreshLoadBtn.userInteractionEnabled = NO;
 }

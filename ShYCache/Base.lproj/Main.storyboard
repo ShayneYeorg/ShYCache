@@ -74,7 +74,7 @@
                                     <action selector="refreshLoadData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ukC-dt-7nW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="先展示本地缓存，同时异步请求接口，将本地缓存的生成时间传给服务器，服务器判断缓存是否过期后，返回指令和数据，客户端收到响应后根据指令处理页面展示。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-iW-L6U">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（先展示本地缓存，同时异步请求接口，将本地缓存的生成时间传给服务器，服务器判断缓存是否过期后，返回指令和数据，客户端收到响应后根据指令处理页面展示。）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-iW-L6U">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Fiu-LY-sbs"/>
                                     <constraint firstAttribute="height" constant="50" id="d4b-4w-bg8"/>
@@ -110,7 +110,7 @@
                                 <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在本demo中，Local类型数据过期时间为1分钟，Server类型数据过期时间为2分钟。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBG-78-Ojo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在本demo中，Local类型缓存的过期时间为1分钟，Server类型缓存的过期时间为2分钟。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBG-78-Ojo">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="2wL-NU-eIf"/>
                                     <constraint firstAttribute="height" constant="50" id="Lj5-ta-ty4"/>

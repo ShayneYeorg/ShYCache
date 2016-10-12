@@ -62,9 +62,9 @@ static FMDatabase *db = nil;
     
     BOOL state = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@", CACHE_TABLE_NAME]];
     if (state) {
-        GMLog(@"清除所有缓存---成功");
+        ShYLog(@"清除所有缓存---成功");
     } else {
-        GMLog(@"清除所有缓存---失败");
+        ShYLog(@"清除所有缓存---失败");
     }
 }
 
@@ -76,7 +76,7 @@ static FMDatabase *db = nil;
 
 + (void)updateLastCheckTime:(NSString *)lastCheckTime interfaceID:(NSString *)interfaceID otherKeys:(NSArray *)otherKeysArray {
     if (!lastCheckTime.length || !interfaceID.length) {
-        GMLog(@"%@接口不需更新lastCheckTime", interfaceID);
+        ShYLog(@"%@接口不需更新lastCheckTime", interfaceID);
         return;
     }
     
@@ -94,7 +94,7 @@ static FMDatabase *db = nil;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:lastCheckTime forKey:key];
     [userDefaults synchronize];
-    GMLog(@"更新%@接口的lastCheckTime成功", interfaceID);
+    ShYLog(@"更新%@接口的lastCheckTime成功", interfaceID);
 }
 
 + (NSString *)getLastCheckTimeByInterfaceID:(NSString *)interfaceID {
@@ -171,25 +171,25 @@ static FMDatabase *db = nil;
     if ([result next]) {
         BOOL state = [db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET %@ = ?, %@ = ?, %@ = ?, %@ = ? WHERE %@ = ? AND %@ = ?", CACHE_TABLE_NAME, CACHE_RESPONSE_CODE, CACHE_RESPONSE_DESC, CACHE_RESPONSE_VALUE, CACHE_SAVE_TIME, CACHE_INTERFACE_ID, CACHE_SUPPLE_TERMS], response.code, response.desc, value, saveTime, interfaceId, responseKey];
         if (state) {
-            GMLog(@"更新%@接口部分缓存---成功", interfaceId);
+            ShYLog(@"更新%@接口部分缓存---成功", interfaceId);
             if (response.jsonDic[KEY_LAST_CHECK_TIME] && shouldSaveLastCheckTime) {
                 [ShYCacheManage updateLastCheckTime:response.jsonDic[KEY_LAST_CHECK_TIME] interfaceID:interfaceId otherKeys:lastCheckTimeKeysArray];
             }
             
         } else {
-            GMLog(@"更新%@接口部分缓存---失败", interfaceId);
+            ShYLog(@"更新%@接口部分缓存---失败", interfaceId);
         }
         
     } else {
         BOOL state = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@ (%@, %@, %@, %@, %@, %@) VALUES(?, ?, ?, ?, ?, ?)", CACHE_TABLE_NAME, CACHE_RESPONSE_CODE, CACHE_RESPONSE_DESC, CACHE_RESPONSE_VALUE, CACHE_SAVE_TIME, CACHE_INTERFACE_ID, CACHE_SUPPLE_TERMS], response.code, response.desc, value, saveTime, interfaceId, responseKey];
         if (state) {
-            GMLog(@"新增%@接口缓存---成功", interfaceId);
+            ShYLog(@"新增%@接口缓存---成功", interfaceId);
             if (response.jsonDic[KEY_LAST_CHECK_TIME] && shouldSaveLastCheckTime) {
                 [ShYCacheManage updateLastCheckTime:response.jsonDic[KEY_LAST_CHECK_TIME] interfaceID:interfaceId otherKeys:lastCheckTimeKeysArray];
             }
             
         } else {
-            GMLog(@"新增%@接口缓存---失败", interfaceId);
+            ShYLog(@"新增%@接口缓存---失败", interfaceId);
         }
     }
     
@@ -228,7 +228,7 @@ static FMDatabase *db = nil;
         if (cacheDataType == CacheDataType_Local && [ShYCacheManage isLocalTypeDataOutOfTime:[result stringForColumn:CACHE_SAVE_TIME]]) {
             //过期
             response.isOutOfTime = YES;
-            GMLog(@"%@接口的数据已过期", interfaceId);
+            ShYLog(@"%@接口的数据已过期", interfaceId);
         }
         
         [result close];
@@ -264,9 +264,9 @@ static FMDatabase *db = nil;
     
     NSString *statement = [key isEqualToString:@"%%"]? @"全部": @"部分";
     if (state) {
-        GMLog(@"删除%@接口%@缓存---成功", interfaceId, statement);
+        ShYLog(@"删除%@接口%@缓存---成功", interfaceId, statement);
     } else {
-        GMLog(@"删除%@接口%@缓存---失败", interfaceId, statement);
+        ShYLog(@"删除%@接口%@缓存---失败", interfaceId, statement);
     }
 }
 
@@ -279,7 +279,7 @@ static FMDatabase *db = nil;
 + (NSString *)dbPath {
     NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [[array objectAtIndex:0] stringByAppendingPathComponent:DBFILE_NAME];
-    GMLog(@"缓存地址是: %@",path);
+    ShYLog(@"缓存地址是: %@",path);
     return path;
 }
 

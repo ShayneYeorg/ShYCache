@@ -11,19 +11,22 @@
 @class GMResponse;
 
 #ifdef DEBUG
-#define GMLog(format, ...) NSLog( @"<%@:(%d)> %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(format),  ##__VA_ARGS__] )
+#define ShYLog(format, ...) NSLog( @"<%@:(%d)> %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(format),  ##__VA_ARGS__] )
 #else
-#define GMLog(format, ...)
+#define ShYLog(format, ...)
 #endif
 
+//解析接口数据使用的key
 #define KEY_RESULT                   @"result"
 #define KEY_DESC                     @"desc"
 #define KEY_CREATE_TIME              @"createTime"
 #define KEY_LAST_CHECK_TIME          @"lastCheckTime"
 
+//请求数据时的接口类型
 #define LOCAL_TYPE_INTERFACE         @"local_type_interface"
 #define SERVER_TYPE_INTERFACE        @"server_type_interface"
 
+//接口返回代码
 #define RESPONSE_CODE_SUCCEED        @"000" //业务成功
 #define RESPONSE_CODE_NO_CHANGE      @"101" //暂无数据变更
 
